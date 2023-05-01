@@ -10,10 +10,14 @@ function App() {
     new Expense('Car Insurance', 294.67, new Date(2021, 2, 28)),
     new Expense('New Desk (Wooden)', 450, new Date(2021, 5, 12)),
   ]
+  
+  const newExpenseHandler = (expense) => {
+    console.log(expense)
+  }
 
   return (
       <div>
-        <NewExpense />
+        <NewExpense onNewExpense={ newExpenseHandler } />
         <ExpenseList items={expenses}/>
       </div>
   );
