@@ -1,8 +1,6 @@
 import 'App.css';
 import ExpenseList from "components/expense/ExpenseList";
 import NewExpense from "components/expense/NewExpense";
-import ExpenseFilter from "./components/expense/ExpenseFilter";
-import {useState} from "react";
 
 function App() {
 
@@ -13,21 +11,14 @@ function App() {
     new Expense('New Desk (Wooden)', 450, new Date(2021, 5, 12)),
   ]
   
-  const [visibleExpenses, setVisibleExpenses] = useState(expenses)
-  
   const newExpenseHandler = (expense) => {
     console.log(expense)
-  }
-  
-  const expenseFilterHandler = (year) => {
-    setVisibleExpenses(expenses.filter(expense => year === '' || expense.date.getFullYear() === Number(year)))
   }
 
   return (
       <div>
-        <NewExpense onNewExpense={ newExpenseHandler } />
-        <ExpenseFilter onFilter={ expenseFilterHandler } />
-        <ExpenseList items={ visibleExpenses }/>
+        <NewExpense onNewExpense={newExpenseHandler}/>
+        <ExpenseList items={expenses}/>
       </div>
   );
 }
