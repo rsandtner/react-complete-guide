@@ -14,7 +14,8 @@ const ExpenseList = (props) => {
 
     const expenses = props.items
         .filter(item => yearFilter === '' || item.date.getFullYear() === Number(yearFilter))
-        .map(item => (<ExpenseItem title={item.title}
+        .map(item => (<ExpenseItem key={item.id}
+                                   title={item.title}
                                    price={item.price}
                                    date={item.date}/>))
 
