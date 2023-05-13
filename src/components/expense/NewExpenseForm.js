@@ -11,30 +11,33 @@ const NewExpenseForm = (props) => {
     const changeHandler = field => {
         return (event) => {
             setFormData(prevState => {
-                
-                console.log(`${field} changed`)
-                
                 return {
                     ...prevState, [field]: event.target.value,
                 };
             });
         };
     };
-
-    const formSubmitHandler = (event) => {
-
-        event.preventDefault();
-        props.onNewExpense(new Expense(formData.title, formData.price, new Date(formData.date)));
-
-        console.log('reset form data')
+    
+    const resetForm = () => {
         setFormData({
             title: '',
             price: '',
             date: '',
         })
-    };
+    }
 
-    return (<form onSubmit={formSubmitHandler}>
+    const formSubmitHandler = (event) => {
+
+        event.preventDefault()
+        props.onNewExpense(new Expense(formData.title, formData.price, new Date(formData.date)))
+        resetForm()
+    };
+    
+    const formResetHandler = () => {
+        props.onCancel()
+    }
+
+    return (<form onSubmit={formSubmitHandler} onReset={formResetHandler}>
         <div className="new-expense__controls">
             <div className="new-expense__control">
                 <label>Title</label>
@@ -56,6 +59,7 @@ const NewExpenseForm = (props) => {
             </div>
         </div>
         <div className="new-expense__actions">
+            <button type="reset">Cancel</button>
             <button type="submit">Add Expense</button>
         </div>
     </form>);
