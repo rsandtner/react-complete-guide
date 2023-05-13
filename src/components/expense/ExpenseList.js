@@ -14,15 +14,20 @@ const ExpenseList = (props) => {
 
     const expenses = props.items
         .filter(item => yearFilter === '' || item.date.getFullYear() === Number(yearFilter))
-        .map(item => (<ExpenseItem key={item.id}
-                                   title={item.title}
-                                   price={item.price}
-                                   date={item.date}/>))
+        .map(item => (
+            <li>
+                <ExpenseItem key={item.id}
+                             title={item.title}
+                             price={item.price}
+                             date={item.date}/>
+            </li>))
 
     return (
         <Card className={"expenses"}>
             <ExpenseFilter onFilter={expenseFilterHandler} year={yearFilter}/>
-            {expenses}
+            <ul>
+                {expenses}
+            </ul>
         </Card>
     )
 }
