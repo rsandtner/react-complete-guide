@@ -33,11 +33,7 @@ const NewExpenseForm = (props) => {
         resetForm()
     };
     
-    const formResetHandler = () => {
-        props.onCancel()
-    }
-
-    return (<form onSubmit={formSubmitHandler} onReset={formResetHandler}>
+    return (<form onSubmit={formSubmitHandler} onReset={props.onCancel}>
         <div className="new-expense__controls">
             <div className="new-expense__control">
                 <label>Title</label>
